@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./AllCheckout.css";
 
 function Checkout() {
-  const { items, cartTotal, totalUniqueItems, emptyCart, isEmpty } = useCart();
+  const { items, cartTotal, totalUniqueItems, isEmpty } = useCart();
 
   const [payment, setPayment] = useState("cash");
 

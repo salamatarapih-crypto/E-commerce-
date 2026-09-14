@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "../Home/NavBar";
 import { Link } from "react-router-dom";
-import { CartProvider, useCart } from "react-use-cart";
+import { CartProvider } from "react-use-cart";
 function Products() {
   const [category, setCategory] = useState([]);
 
