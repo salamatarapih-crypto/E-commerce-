@@ -2,10 +2,10 @@ import React from "react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import Navbar from "../Home/NavBar";
 import "./ContactUs.css";
-
+import { CartProvider } from "react-use-cart";
 function ContactUs() {
   return (
-    <div>
+    <CartProvider>
       <Navbar />
 
       <section className="contact-section">
@@ -181,7 +181,7 @@ function ContactUs() {
           </div>
         </div>
       </section>
-    </div>
+    </CartProvider>
   );
 }
 

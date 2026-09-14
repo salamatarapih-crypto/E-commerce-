@@ -7,7 +7,7 @@ function Hero() {
       <div className="container">
         <div className="row align-items-center g-4 bg-dark text-white rounded-5 p-4 p-md-5 shadow">
           <div className="col-12 col-lg-6 text-center text-lg-start">
-            <span className="badge bg-white text-dark rounded-pill px-3 py-2 mb-3">
+            <span className="badge  text-white  px-3 py-2 mb-3">
               New Collection
             </span>
 

@@ -1,10 +1,10 @@
 import React from "react";
 import Navbar from "../Home/NavBar";
 import "./About.css";
-
+import { CartProvider } from "react-use-cart";
 function About() {
   return (
-    <div>
+    <CartProvider>
       <Navbar />
 
       <section className="about-hero">
@@ -185,7 +185,7 @@ function About() {
           <p>Powered by modern technology. 🚀</p>
         </div>
       </section>
-    </div>
+    </CartProvider>
   );
 }
 
