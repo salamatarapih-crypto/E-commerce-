@@ -13,6 +13,7 @@ import AllCart from "./Cart/AllCart";
 import AllCheckout from "./CheackOut/AllCheckout";
 import About from "./About/About";
 import ContactUs from "./Contact/ContactUs";
+import { CartProvider } from "react-use-cart";
 
 let router = createBrowserRouter([
   {
@@ -57,8 +58,8 @@ let router = createBrowserRouter([
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
+  <CartProvider>
     <ScrollToTop smooth />
     <RouterProvider router={router} />
-  </>,
+  </CartProvider>,
 );
