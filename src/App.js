@@ -7,9 +7,7 @@ function App() {
   return (
  <CartProvider className="App">
       <Navbar />
-      <br></br>
-      <br></br>
-      <br></br>
+  
       <Hero/>
  </CartProvider>
   );
