@@ -57,10 +57,7 @@ function Cart() {
     }
   };
 
-  useEffect(() => {
-    getCart();
-  }, []);
-
+ 
   const updateQuantity = async (productId, quantity) => {
     const token = localStorage.getItem("token");
 

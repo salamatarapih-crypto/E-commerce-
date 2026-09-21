@@ -1,10 +1,10 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "react-use-cart";
+
 
 function Navbar() {
-  const {totalItems}=useCart()
+ 
   return (
     <nav
       className="navbar navbar-expand-lg bg-white shadow-sm py-3 "
