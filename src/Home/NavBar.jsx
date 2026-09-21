@@ -80,7 +80,7 @@ function Navbar() {
         padding: "2px 6px",
       }}
     >
-      {totalItems}
+   
     </span>
   </Link>
 </li>

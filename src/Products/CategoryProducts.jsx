@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Navbar from "../Home/NavBar";
-import { CartProvider, useCart } from "react-use-cart";
 import "./CategoryProducts.css";
+
+const backend = "https://ecommerce-backend-production-6748.up.railway.app";
 
 const optimizeImage = (url) => {
   if (!url) return "";
@@ -17,20 +18,15 @@ function Page() {
   const [wishlist, setWishlist] = useState([]);
 
   const { slug } = useParams();
-  const { addItem } = useCart();
 
-  // Get wishlist from localStorage
   useEffect(() => {
     const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
     setWishlist(savedWishlist);
   }, []);
 
-  // Get products
   useEffect(() => {
-    const url = `https://ecommerce-backend-production-6748.up.railway.app/products?category=${encodeURIComponent(
-      slug,
-    )}`;
+    const url = `${backend}/products?category=${encodeURIComponent(slug)}`;
 
     axios
       .get(url)
@@ -45,7 +41,43 @@ function Page() {
       });
   }, [slug]);
 
-  // Add / Remove Wishlist
+  const addToCart = async (item) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.log("Please login first");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${backend}/cart`,
+        {
+          productId: item._id,
+          quantity: 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      console.log("ADD TO CART:", response.data);
+    } catch (error) {
+      console.log("ADD TO CART ERROR:", error);
+
+      if (error.response?.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        console.log("Session expired. Please login again.");
+        return;
+      }
+
+      console.log(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
   const toggleWishlist = (item) => {
     const alreadyExists = wishlist.some((product) => product._id === item._id);
 
@@ -62,7 +94,6 @@ function Page() {
     localStorage.setItem("wishlist", JSON.stringify(newWishlist));
   };
 
-  // Check if product is in wishlist
   const isInWishlist = (id) => {
     return wishlist.some((product) => product._id === id);
   };
@@ -74,7 +105,6 @@ function Page() {
           product.map((item) => (
             <div className="col-12 col-sm-6 col-lg-4 mb-4" key={item._id}>
               <div className="card h-100 shadow-sm border-0 position-relative">
-                {/* Wishlist Button */}
                 <button
                   className={`wishlist-btn ${
                     isInWishlist(item._id) ? "active" : ""
@@ -105,7 +135,7 @@ function Page() {
 
                   <button
                     className="btn btn-dark w-100"
-                    onClick={() => addItem(item)}
+                    onClick={() => addToCart(item)}
                   >
                     Add to cart
                   </button>
@@ -123,13 +153,13 @@ function Page() {
 
 function CategoryProducts() {
   return (
-    <CartProvider>
+    <>
       <Navbar />
 
       <div className="category-page-space"></div>
 
       <Page />
-    </CartProvider>
+    </>
   );
 }
 

@@ -27,10 +27,9 @@ function Hero() {
       <div className="container">
         <div className="row">
           <div className="col-12 col-lg-7">
-
             <div className="mb-4">
               <span
-                className="d-inline-block px-3 py-2 rounded-pill border border-dark text-dark"
+                className="  text-dark"
                 style={{
                   fontSize: "13px",
                   fontWeight: "600",
@@ -51,9 +50,7 @@ function Hero() {
             >
               Technology
               <br />
-              <span className="text-secondary">
-                Made Simple.
-              </span>
+              <span className="text-secondary">Made Simple.</span>
             </h1>
 
             <p
@@ -77,7 +74,7 @@ function Hero() {
               </Link>
 
               <Link
-                to="/categories"
+                to="/products"
                 className="btn btn-outline-dark rounded-pill px-4 py-3"
               >
                 Browse Categories
@@ -116,7 +113,6 @@ function Hero() {
                 <small className="text-secondary">Shopping</small>
               </div>
             </div>
-
           </div>
         </div>
       </div>
